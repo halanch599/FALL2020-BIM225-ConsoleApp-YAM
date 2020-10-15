@@ -1,1 +1,0 @@
-# FALL2020-BIM225-ConsoleApp-YAM
