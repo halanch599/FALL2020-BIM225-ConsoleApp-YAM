@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,27 +9,157 @@ namespace consoleAPYaz
 {
     class Program
     {
+        // method overloading
+        static void DisplayList(List<int> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + " ");
+            }
+            Console.WriteLine("");
+        }
+
+        static void DisplayList(List<string> list)
+        {
+            foreach (string name in list)
+            {
+                //Console.WriteLine("Welcome, " + name.ToUpper());
+                Console.WriteLine($"Welcome,  {name.ToUpper()}");
+                //Console.WriteLine("Welcome, {0}",name.ToUpper());
+            }
+        }
+
+        static bool SearByName(List<string> list,string name)
+        {
+            bool result = false;
+            foreach (string str in list)
+            {
+                if (str.ToLower().Contains(name.ToLower()))
+                {
+                    result = true;
+                    break;
+                }
+            }
+
+            return result;
+        }
+        static void Fibonacci(List<int> list)
+        {
+
+        }
+        // Fibonacci Series
+        // 1 1 2 3 5 8 13 21
         static void Main(string[] args)
         {
 
+            List<int> list = new List<int>();
+            list.Add(1);
+            list.Add(1);
+            // String List
+
+            Fibonacci(list);
+            //List<string> students = new List<string> {
+            //"Ali Halid", "Husain Khan", "Donald Trump"
+            //};
+
+            //if (SearByName(students,"khAn"))
+            //{
+            //    Console.WriteLine("Yes Found");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not Found.");
+            //}
+            //if (students.Contains("Donald Trump"))
+            //{
+            //    Console.WriteLine("Yes");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No.");
+            //}
+
+            //DisplayList(students);
+            //// Int List:
+            //List<int> nums = new List<int>();
+            //nums.Add(10);
+            //nums.Add(2);
+            //nums.Add(15);
+            //nums.Add(4);
+            //nums.Add(1);
+
+
+            //int[] elements = new int[]{100,54,80 };
+            //nums.AddRange(elements);
+
+            ////Console.WriteLine("Average:" + nums.Average());
+            ////Console.WriteLine("Contains:" + nums.Contains(100));
+            ////Console.WriteLine("Max:" + nums.Max());
+            ////Console.WriteLine("Min:" + nums.Min());
+            ////Console.WriteLine("Sum:" + nums.Sum());
+
+            //DisplayList(nums);
+            //nums.Sort();
+            //DisplayList(nums);
+            //for (int i = 0; i < nums.Count; i++)
+            //{
+            //    //Console.Write(" ");
+            //    Console.Write(nums[i] + " ");
+            //}
+            //nums.Add(elements[0]);
+            //nums.Add(elements[1]);
+            //nums.Add(elements[2]);
+
+            //for (int i = 0; i < nums.Count; i++)
+            //{
+            //    //Console.Write(" ");
+            //    Console.Write(nums[i] +" ");
+            //}
+
+            //Console.WriteLine("");
+            ////nums.Remove(100);
+            //// lambda Expression
+            ////var count = nums.RemoveAll(x => x > 50);
+            ////nums.RemoveAt(3);
+            //nums.RemoveRange(0, 3);
+
+            ////nums.Reverse();
+            //for (int i = 0; i < nums.Count; i++)
+            //{
+            //    Console.Write(nums[i] + " ");
+            //}
+
+
+            //int[]array =  nums.ToArray();
+
+            //var array = nums.ToArray();
+
+            //Console.WriteLine(nums.Count);
+
+            //nums.Clear();
+
+            //Console.WriteLine(nums.Count);
+
+            //nums.Add(100);
+            //Console.WriteLine(nums.Count);
 
             // Loops for, while , do-while, foreach
 
             // arrays
-            
 
-            // array initialization
-            int[] nums = new int[] {45,65,45,78,90,56,77 };
-            int count = nums.Length-1;
-            int sum = 0;
-            while (count>-1)
-            {
-                //Console.WriteLine(nums[count]);
-                sum += nums[count];
-                count--;
-            }
-            Console.WriteLine("Total Marks = {0}, Average = {1} ",
-                sum,(float)sum/nums.Length);
+
+            //// array initialization
+            //int[] nums = new int[] {45,65,45,78,90,56,77 };
+            //int count = nums.Length-1;
+            //int sum = 0;
+            //while (count>-1)
+            //{
+            //    //Console.WriteLine(nums[count]);
+            //    sum += nums[count];
+            //    count--;
+            //}
+            //Console.WriteLine("Total Marks = {0}, Average = {1} ",
+            //    sum,(float)sum/nums.Length);
             //foreach (int n in nums)
             //{
             //    Console.WriteLine(n);
