@@ -1,63 +1,170 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
+using System.CodeDom;
+using System.IO;
 
 namespace consoleAPYaz
 {
     class Program
     {
-        // method overloading
-        static void DisplayList(List<int> list)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.Write(list[i] + " ");
-            }
-            Console.WriteLine("");
-        }
-
-        static void DisplayList(List<string> list)
-        {
-            foreach (string name in list)
-            {
-                //Console.WriteLine("Welcome, " + name.ToUpper());
-                Console.WriteLine($"Welcome,  {name.ToUpper()}");
-                //Console.WriteLine("Welcome, {0}",name.ToUpper());
-            }
-        }
-
-        static bool SearByName(List<string> list,string name)
-        {
-            bool result = false;
-            foreach (string str in list)
-            {
-                if (str.ToLower().Contains(name.ToLower()))
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            return result;
-        }
-        static void Fibonacci(List<int> list)
-        {
-
-        }
         // Fibonacci Series
         // 1 1 2 3 5 8 13 21
         static void Main(string[] args)
         {
 
-            List<int> list = new List<int>();
-            list.Add(1);
-            list.Add(1);
-            // String List
+            // Week 5-2
 
-            Fibonacci(list);
+            // object oriented programming
+            // class
+
+            Student s1 = new Student();
+            //s1.studentID = 10;
+            s1.firstName = "Ali";
+            s1.lastName = "Halid";
+            //s1.gender = "Male";
+
+            Student s2 = new Student();
+            s2.studentID = 11;
+            s2.firstName = "Anil";
+            s2.lastName = "Khan";
+            s2.gender = "Female";
+
+            //Student s3 = new Student(1, "Ali", "Halid", "Male");
+            //Student s4 = new Student(2, "Anila", "Khan", "Female");
+
+
+            Console.WriteLine($"Id= {s1.studentID}," +
+                $"Name = {s1.firstName} {s1.lastName},Gender={s1.gender}");
+
+            Console.WriteLine($"Id= {s2.studentID}," +
+               $"Name = {s2.firstName} {s2.lastName},Gender={s2.gender}");
+
+
+
+
+
+
+
+
+            // Exception Handle
+            // bir try ile birden fazla catch olabilir
+            // try enaz bir catch lazim
+            // try catch
+
+            //string path1 = @"F:\test.txt";
+
+            //try
+            //{
+            //    //var data = File.ReadAllText(path1);
+            //  string []data=  File.ReadAllLines(path1);
+            //    // Research about following 
+            //    //File.WriteAllText
+            //    //File.WriteAllLines
+            //    //File.WriteAllBytes  
+
+            //    foreach (var str in data)
+            //    {
+            //        Console.WriteLine(str);
+            //    }
+            //    //Console.WriteLine(data);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+            //if (File.Exists(path1))
+            //{
+            //    File.Delete(path1);
+            //    //throw new Exception("This document is used by another program.");
+            //}
+
+            //StreamWriter writer = new StreamWriter(path1,true);
+
+            //try
+            //{
+            //    writer.WriteLine("Welcome to IZU");
+            //    writer.WriteLine("Welcome to Visual Programming");
+            //    writer.WriteLine("Please do your home work.");
+            //    writer.WriteLine("Do your project proposal.");
+            //    writer.Flush();
+            //    Console.WriteLine("Filed written successfully.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error:" + ex.Message);
+            //}
+            //finally
+            //{
+            //    writer.Close();
+            //}
+            //    string path = @"F:\data.txt";
+            //    StreamReader reader = new StreamReader(path);
+            //try
+            //{
+            //    while (reader.Peek()>=0)
+            //    {
+            //        Console.WriteLine(reader.ReadLine());
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //finally
+            //{
+            //    reader.Close();
+            //}
+            //try
+            //{
+            //    int[] ar = new int[] { 1, 2, 3 };
+            //    ar[10] = 10;
+            //    string str = "15X";
+            //    int num = int.Parse(str);
+
+            //    Console.WriteLine(num);
+            //}
+            //catch (IndexOutOfRangeException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    //Console.WriteLine("Bi hata oldu.");
+            //}
+
+            Console.ReadLine();
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //List<int> list = new List<int>();
+            //list.Add(1);
+            //list.Add(1);
+            //// String List
+
             //List<string> students = new List<string> {
             //"Ali Halid", "Husain Khan", "Donald Trump"
             //};
@@ -309,7 +416,45 @@ namespace consoleAPYaz
             //    Console.WriteLine(name);
             //}
 
-            Console.ReadLine();
         }
+
+        ////// method overloading
+        ////static void DisplayList(List<int> list)
+        ////{
+        ////    for (int i = 0; i < list.Count; i++)
+        ////    {
+        ////        Console.Write(list[i] + " ");
+        ////    }
+        ////    Console.WriteLine("");
+        ////}
+
+        ////static void DisplayList(List<string> list)
+        ////{
+        ////    foreach (string name in list)
+        ////    {
+        ////        //Console.WriteLine("Welcome, " + name.ToUpper());
+        ////        Console.WriteLine($"Welcome,  {name.ToUpper()}");
+        ////        //Console.WriteLine("Welcome, {0}",name.ToUpper());
+        ////    }
+        ////}
+
+        ////static bool SearByName(List<string> list,string name)
+        ////{
+        ////    bool result = false;
+        ////    foreach (string str in list)
+        ////    {
+        ////        if (str.ToLower().Contains(name.ToLower()))
+        ////        {
+        ////            result = true;
+        ////            break;
+        ////        }
+        ////    }
+
+        ////    return result;
+        ////}
+        ////static void Fibonacci(List<int> list)
+        ////{
+
+        ////}
     }
 }
