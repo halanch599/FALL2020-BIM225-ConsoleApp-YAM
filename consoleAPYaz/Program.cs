@@ -1,4 +1,5 @@
-﻿using System;
+﻿using consoleAPYaz.Model;
+using System;
 using System.CodeDom;
 using System.IO;
 
@@ -10,33 +11,34 @@ namespace consoleAPYaz
         // 1 1 2 3 5 8 13 21
         static void Main(string[] args)
         {
-
+            Department department = new Department(201, "Software Engineering");
+            department.Display();
             // Week 5-2
 
             // object oriented programming
             // class
 
-            Student s1 = new Student();
-            //s1.studentID = 10;
-            s1.firstName = "Ali";
-            s1.lastName = "Halid";
-            //s1.gender = "Male";
+            //Student s1 = new Student();
+            ////s1.studentID = 10;
+            //s1.firstName = "Ali";
+            //s1.lastName = "Halid";
+            ////s1.gender = "Male";
 
-            Student s2 = new Student();
-            s2.studentID = 11;
-            s2.firstName = "Anil";
-            s2.lastName = "Khan";
-            s2.gender = "Female";
+            //Student s2 = new Student();
+            //s2.studentID = 11;
+            //s2.firstName = "Anil";
+            //s2.lastName = "Khan";
+            //s2.gender = "Female";
 
-            //Student s3 = new Student(1, "Ali", "Halid", "Male");
-            //Student s4 = new Student(2, "Anila", "Khan", "Female");
+            ////Student s3 = new Student(1, "Ali", "Halid", "Male");
+            ////Student s4 = new Student(2, "Anila", "Khan", "Female");
 
 
-            Console.WriteLine($"Id= {s1.studentID}," +
-                $"Name = {s1.firstName} {s1.lastName},Gender={s1.gender}");
+            //Console.WriteLine($"Id= {s1.studentID}," +
+            //    $"Name = {s1.firstName} {s1.lastName},Gender={s1.gender}");
 
-            Console.WriteLine($"Id= {s2.studentID}," +
-               $"Name = {s2.firstName} {s2.lastName},Gender={s2.gender}");
+            //Console.WriteLine($"Id= {s2.studentID}," +
+            //   $"Name = {s2.firstName} {s2.lastName},Gender={s2.gender}");
 
 
 
