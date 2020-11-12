@@ -11,8 +11,21 @@ namespace consoleAPYaz
         // 1 1 2 3 5 8 13 21
         static void Main(string[] args)
         {
-            Department department = new Department(201, "Software Engineering");
-            department.Display();
+            
+            Student s = new Student(1,"ali","halid","Male","ali@izu,edu.tr","123",
+                "Halkali Campus",DateTime.Now,101,1,5);
+            s.Display();
+            s.FirstName = "Muhammad Ali";
+            Console.WriteLine(s.FirstName);
+            Console.ReadLine();
+            //Employee e = new Employee();
+            // var result =  e.Login("admin@izu.edu.tr", "123");
+            //var tax = e.CalculateTax(1);
+            // Student snew = new Person();
+
+            //Course c1 = new Course(201, "Visual Programming", 4);
+            //Department department = new Department(201, "Software Engineering");
+            //department.Display();
             // Week 5-2
 
             // object oriented programming
@@ -137,10 +150,10 @@ namespace consoleAPYaz
             //    //Console.WriteLine("Bi hata oldu.");
             //}
 
-            Console.ReadLine();
 
 
-            
+
+
 
 
 

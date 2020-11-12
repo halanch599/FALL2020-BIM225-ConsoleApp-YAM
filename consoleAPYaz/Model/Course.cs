@@ -8,9 +8,9 @@ namespace consoleAPYaz.Model
 {
     class Course
     {
-        int courseID;
-        string name;
-        int credit;
+        private int courseID;
+        private string name;
+        private int credit;
 
         public Course(int courseID, string name, int credit)
         {
