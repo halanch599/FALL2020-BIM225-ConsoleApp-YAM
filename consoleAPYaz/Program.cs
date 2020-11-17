@@ -1,23 +1,182 @@
 ﻿using consoleAPYaz.Model;
 using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.IO;
 
 namespace consoleAPYaz
 {
+    //value type
+    // stack
+    //new gerekyok
+    //struct Point
+    //{
+    //    int x;
+    //    int y;
+    //    float z;
+
+    //    //public Point( int x, int y)
+    //    //{
+    //    //    this.x = x;
+    //    //    this.y = y;
+    //    //}
+    //    public int X { get => x; set => x = value; }
+    //    public int Y { get => y; set => y = value; }
+    //    //public void Display()
+    //    //{
+    //    //    Console.WriteLine($"X = {X} Y = {Y}");
+    //    //}
+    //}
+    // reference type
+    // new keywrod
+    //
+
+    public interface IBank
+    {
+        //signature : return type, name, methodparameters
+        bool Deposit(int AccountNo, float Amount);
+        float Withdraw(int AccountNo, float Amount);
+        bool TransferMoney(int SenderAccountNo, int ReceiverAccountNo, float Amount);
+    }
+
+    class Account
+    {
+        int accountNo;
+        string name;
+        float balance;
+
+        public Account()
+        {
+
+        }
+        public Account(int accountNo, string name, float balance)
+        {
+            this.accountNo = accountNo;
+            this.name = name;
+            this.balance = balance;
+        }
+
+        public int AccountNo { get => accountNo; set => accountNo = value; }
+        public string Name { get => name; set => name = value; }
+        public float Balance { get => balance; set => balance = value; }
+
+        public void Display()
+        {
+            Console.WriteLine($"Acc. NO = {AccountNo} \tName = {Name}\t Balance={Balance}");
+        }
+        public void Display(Account acc)
+        {
+            Console.WriteLine($"Acc. NO = {acc.AccountNo} \tName = {acc.Name}\t Balance={acc.Balance}");
+        }
+    }
+    class IsBank : IBank
+    {
+        List<Account> dbAccount;
+        public IsBank()
+        {
+            dbAccount = new List<Account>();
+        }
+        public void CreateAccount(string name,float amount=0.0f)
+        {
+            try
+            {
+                Account account = new Account(dbAccount.Count + 1, name, amount);
+                dbAccount.Add(account);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error creating account.");
+            }
+        }
+
+        public void Display()
+        {
+            try
+            {
+                foreach (Account account in dbAccount)
+                {
+                    account.Display();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in displaying account details.");
+            }
+        }
+        public bool Deposit(int AccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TransferMoney(int SenderAccountNo, int ReceiverAccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float Withdraw(int AccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class AkBank : IBank
+    {
+        public bool Deposit(int AccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TransferMoney(int SenderAccountNo, int ReceiverAccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float Withdraw(int AccountNo, float Amount)
+        {
+            throw new NotImplementedException();
+        }
+    }
     class Program
     {
         // Fibonacci Series
         // 1 1 2 3 5 8 13 21
         static void Main(string[] args)
         {
-            
-            Student s = new Student(1,"ali","halid","Male","ali@izu,edu.tr","123",
-                "Halkali Campus",DateTime.Now,101,1,5);
-            s.Display();
-            s.FirstName = "Muhammad Ali";
-            Console.WriteLine(s.FirstName);
+
+            IsBank isBank = new IsBank();
+            isBank.CreateAccount("Ali Oguz");
+            isBank.CreateAccount("Anila Qazi",100);
+            isBank.CreateAccount("Hassan Ali",-200);
+            isBank.CreateAccount("", -500);
+
+            isBank.Display();
+
+
+
+
             Console.ReadLine();
+
+
+            //Point p  = new Point();
+            //p.X = 10;
+            //p.Y = 20;
+            // p.Display();
+
+            //Person p = new Person();
+            //p.FirstName = "Ali";
+            //p.LastName = "Halid";
+
+            //p.AddressTest = new Person.addressTest("Street 121", "Halkali", "Turkey");
+            //Console.WriteLine(p.Name);
+            //Console.WriteLine(p.Name.Length);
+            //p.AddressTest.City = "Istanbul";
+            //Console.WriteLine(p.AddressTest.Address);
+
+            //Student s = new Student(1,"ali","halid","Male","ali@izu,edu.tr","123",
+            //    "Halkali Campus",DateTime.Now,101,1,5);
+            //s.Display();
+            //s.FirstName = "Muhammad Ali";
+            //Console.WriteLine(s.FirstName);
             //Employee e = new Employee();
             // var result =  e.Login("admin@izu.edu.tr", "123");
             //var tax = e.CalculateTax(1);

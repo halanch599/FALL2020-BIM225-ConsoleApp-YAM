@@ -6,45 +6,73 @@ using System.Threading.Tasks;
 
 namespace consoleAPYaz.Model
 {
-    class Person
+    public class Person
     {
         //protected shows only in child and parent classes
-        protected string firstName;
-        protected string lastName;
-        protected string gender;
-        protected string email;
-        protected string password;
-        protected string address;
-        protected DateTime dateOfBirth;
-        protected int departmentID;
+        private string firstName;
+        private string lastName;
+        private string gender;
+        private string email;
+        private string password;
+        private string address;// street City state Zip Code Country
+        private DateTime dateOfBirth;
+        private int departmentID;
 
-        // properties
-       
-        public string FirstName
+        public addressTest AddressTest { get; set; }
+        public class addressTest
         {
-            get { return firstName; }
-            set {
+            private string street;
+            private string city;
+            private string zip;
+            private string country;
 
-                if (value == "")
-                {
-                    throw new Exception("Please enter some string");
-                }
-                firstName = value; 
-            }
-        }
-
-        public string getFirstName()
-        {
-            return firstName;
-        }
-        public void setFirstName(string val)
-        {
-            if (val=="")
+            public addressTest(string street, string city, string country, string zip = "")
             {
-                throw new Exception("Please enter some string");
+                this.street = street;
+                this.city = city;
+                this.zip = zip;
+                this.country = country;
             }
-            firstName = val;
+            public string Address {
+                get
+                    { 
+                        return street + " " + city + " " + zip + " " + Country;
+                    }
+            }
+            public string Street { get => street; set => street = value; }
+            public string City { get => city; set => city = value; }
+            public string Zip { get => zip; set => zip = value; }
+            public string Country { get => country; set => country = value; }
         }
+        // properties
+
+        public string   Name
+        {
+            get { return firstName + " " + lastName; }
+        }
+
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string LastName { get => lastName; set => lastName = value; }
+        public string Gender { get => gender; set => gender = value; }
+        public string Email { get => email; set => email = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
+        public int DepartmentID { get => departmentID; set => departmentID = value; }
+
+
+        //public string getFirstName()
+        //{
+        //    return firstName;
+        //}
+        //public void setFirstName(string val)
+        //{
+        //    if (val=="")
+        //    {
+        //        throw new Exception("Please enter some string");
+        //    }
+        //    firstName = val;
+        //}
         public Person()
         {
             //Console.WriteLine("In Person Constructor.");
@@ -54,14 +82,14 @@ namespace consoleAPYaz.Model
             string email, string password, string address, DateTime dateOfBirth, 
             int departmentID)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.gender = gender;
-            this.email = email;
-            this.password = password;
-            this.address = address;
-            this.dateOfBirth = dateOfBirth;
-            this.departmentID = departmentID;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Gender = gender;
+            this.Email = email;
+            this.Password = password;
+            this.Address = address;
+            this.DateOfBirth = dateOfBirth;
+            this.DepartmentID = departmentID;
         }
 
         public bool Login(string email, string password)

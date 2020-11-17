@@ -31,7 +31,7 @@ namespace consoleAPYaz.Model
 
         public void Display()
         {
-            Console.WriteLine($"ID = {studentID} \tName = {firstName} {lastName}\t Department = {departmentID}");
+            Console.WriteLine($"ID = {studentID} \tName = {FirstName} {LastName}\t Department = {DepartmentID}");
         }
     }
 }
