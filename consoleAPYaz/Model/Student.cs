@@ -33,5 +33,25 @@ namespace consoleAPYaz.Model
         {
             Console.WriteLine($"ID = {studentID} \tName = {FirstName} {LastName}\t Department = {DepartmentID}");
         }
+
+        public override void Login(string email, string password)
+        {
+            try
+            {
+                if (email == "std" && password == "123")
+                {
+                    Console.WriteLine("Welcome, Student.");
+                }
+                else
+                {
+                    Console.WriteLine("Username or password is incorrect.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Login.");
+            }
+        }
     }
 }

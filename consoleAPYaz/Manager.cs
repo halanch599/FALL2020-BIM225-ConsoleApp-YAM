@@ -14,5 +14,10 @@ namespace consoleAPYaz
         {
             //Console.WriteLine("In Manager.");
         }
+
+        public override void Login(string email, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

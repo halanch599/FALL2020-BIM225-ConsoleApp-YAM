@@ -35,11 +35,11 @@ namespace consoleAPYaz
     {
         //signature : return type, name, methodparameters
         bool Deposit(int AccountNo, float Amount);
-        float Withdraw(int AccountNo, float Amount);
+        void Withdraw(int AccountNo, float Amount);
         bool TransferMoney(int SenderAccountNo, int ReceiverAccountNo, float Amount);
     }
 
-    class Account
+   public class Account
     {
         int accountNo;
         string name;
@@ -51,18 +51,39 @@ namespace consoleAPYaz
         }
         public Account(int accountNo, string name, float balance)
         {
-            this.accountNo = accountNo;
-            this.name = name;
-            this.balance = balance;
+            this.AccountNo = accountNo;
+            this.Name= name;
+            this.Balance = balance;
         }
 
         public int AccountNo { get => accountNo; set => accountNo = value; }
-        public string Name { get => name; set => name = value; }
-        public float Balance { get => balance; set => balance = value; }
+        public string Name { get => name;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new Exception("Name cannot be empty.");
+                }
+                name = value;
+            }
+        
+        }
+        public float Balance { get => balance;
+
+            set
+            {
+                if (value<0)
+                {
+                    throw new Exception("Balance cannot be negative.");
+                }
+                balance = value;
+            }
+
+        }
 
         public void Display()
         {
-            Console.WriteLine($"Acc. NO = {AccountNo} \tName = {Name}\t Balance={Balance}");
+            Console.WriteLine($"Acc. NO = {AccountNo}, Name = {Name}, Balance={Balance}");
         }
         public void Display(Account acc)
         {
@@ -85,10 +106,32 @@ namespace consoleAPYaz
             }
             catch (Exception ex)
             {
-                throw new Exception("Error creating account.");
+                throw new Exception("Error creating account. \n" + ex.Message);
             }
         }
 
+        private int SearchByAccountNo(int AccNo)
+        {
+            try
+            {
+                int Index= -1;
+
+                for (int i = 0; i < dbAccount.Count; i++)
+                {
+                    if (dbAccount[i].AccountNo==AccNo)
+                    {
+                        Index = i;
+                        break;
+                    }
+                }
+
+                return Index;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error in Search by Account.");
+            }
+        }
         public void Display()
         {
             try
@@ -105,17 +148,88 @@ namespace consoleAPYaz
         }
         public bool Deposit(int AccountNo, float Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var index = SearchByAccountNo(AccountNo);
+                if (index<0)
+                {
+                    throw new Exception("Account No is invalid.");
+                }
+
+                if (Amount<0)
+                {
+                    throw new Exception("Amount cannot be negative.");
+                }
+
+                dbAccount[index].Balance += Amount;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public bool TransferMoney(int SenderAccountNo, int ReceiverAccountNo, float Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var indexSender = SearchByAccountNo(SenderAccountNo);
+                var indexReceiver = SearchByAccountNo(ReceiverAccountNo);
+
+                if (indexSender < 0 || indexReceiver<0)
+                {
+                    throw new Exception("Sener/Receiver Account No is invalid.");
+                }
+
+                if (Amount < 0)
+                {
+                    throw new Exception("Sender amount cannot be negative.");
+                }
+
+                if (dbAccount[indexSender].Balance < Amount)
+                {
+                    throw new Exception("Sender amount cannot be less than Balance.");
+                }
+
+                dbAccount[indexSender].Balance -= Amount;
+                dbAccount[indexReceiver].Balance += Amount;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public float Withdraw(int AccountNo, float Amount)
+        public void Withdraw(int AccountNo, float Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var index = SearchByAccountNo(AccountNo);
+                if (index < 0)
+                {
+                    throw new Exception("Account No is invalid.");
+                }
+
+                if (Amount < 0)
+                {
+                    throw new Exception("Amount cannot be negative.");
+                }
+
+                if (dbAccount[index].Balance<Amount)
+                {
+                    throw new Exception("Amount cannot be less than Balance.");
+                }
+
+                dbAccount[index].Balance -= Amount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 
@@ -131,7 +245,7 @@ namespace consoleAPYaz
             throw new NotImplementedException();
         }
 
-        public float Withdraw(int AccountNo, float Amount)
+        public void Withdraw(int AccountNo, float Amount)
         {
             throw new NotImplementedException();
         }
@@ -143,13 +257,59 @@ namespace consoleAPYaz
         static void Main(string[] args)
         {
 
-            IsBank isBank = new IsBank();
-            isBank.CreateAccount("Ali Oguz");
-            isBank.CreateAccount("Anila Qazi",100);
-            isBank.CreateAccount("Hassan Ali",-200);
-            isBank.CreateAccount("", -500);
+            try
+            {
+                //poymorphism
 
-            isBank.Display();
+                //Student s = new Student();
+                //s.Login("std","123");
+
+                //Employee e = new Employee();
+                //e.Login("admin","123");
+
+
+                Student s = new Student();
+                s.FirstName = "Ali";
+                s.Login("", "");
+                s.Logout(s);
+
+
+                Employee e = new Employee();
+                e.FirstName = "Habib";
+                e.Logout(e);
+
+                //Person p = new Person();   // Abstract 
+
+                //Person p1 = new Student();
+                //p1.FirstName = "Ali";
+
+                //Person p2 = new Employee();
+                //p2.FirstName = "Habib";
+
+
+                //IsBank isBank = new IsBank();
+                //isBank.CreateAccount("Ali Oguz",300);
+                //isBank.CreateAccount("Anila Qazi", 100);
+                //isBank.CreateAccount("Nisar Ali", 600);
+                //isBank.Display();
+
+                ////isBank.Deposit(1, 500);
+                ////isBank.Withdraw(1, 100);
+                //Console.WriteLine();
+
+                ////isBank.Display();
+
+                //Console.WriteLine();
+                //if(isBank.TransferMoney(3, 1, 200))
+                //    Console.WriteLine("Transfer completed successfully.");
+                //else
+                //    Console.WriteLine("Transfer was not successfull.");
+                //isBank.Display();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
 
 

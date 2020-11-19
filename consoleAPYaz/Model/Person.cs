@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace consoleAPYaz.Model
 {
-    public class Person
+    public abstract class Person
     {
         //protected shows only in child and parent classes
         private string firstName;
@@ -92,9 +92,36 @@ namespace consoleAPYaz.Model
             this.DepartmentID = departmentID;
         }
 
-        public bool Login(string email, string password)
+        //public abstract void Login(string email, string password);
+        public virtual  void Login(string email, string password)
         {
-            return true;
+            if (email=="admin" && password=="123")
+            {
+                Console.WriteLine("Welcome, Admin.");
+            }
+            //if (email == "std" && password == "123")
+            //{
+            //    Console.WriteLine("Welcome, Student.");
+            //}
+        }
+
+        public void Logout(Person p)
+        {
+            try
+            {
+                if (p is Employee)
+                {
+                    Console.WriteLine($"Thank you {p.firstName}. You are Employee.");
+                }
+                if (p is Student)
+                {
+                    Console.WriteLine($"Thank you {p.firstName}. You are Student.");
+                }
+            }
+            catch (Exception )
+            {
+                throw new Exception("Error in logout.");
+            }
         }
     }
 }
